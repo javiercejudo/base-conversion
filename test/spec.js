@@ -39,7 +39,7 @@ describe('base conversion', function() {
   });
 
   it('should support custom symbols', function() {
-    fn.symbols('0123456789A#', 8, 12, '73').should.be.exactly('4#');
+    fn.symbols('⓿①②③④⑤⑥⑦⑧⑨ⒶⒷ', 8, 12, '⑦③').should.be.exactly('④Ⓑ');
   });
 
   it('should expose the raw converter', function() {

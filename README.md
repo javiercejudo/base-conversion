@@ -13,8 +13,8 @@ Auto-curried converter between any bases with arbitrary precision support and cu
 ## Basic usage
 
 ```js
-var fn = require('base-conversion');
-var hexToBin = fn(16, 2);
+var bc = require('base-conversion');
+var hexToBin = bc(16, 2);
 
 hexToBin('A'); //=> '1010'
 hexToBin('1E'); //=> '11110'
@@ -22,10 +22,18 @@ hexToBin('1E'); //=> '11110'
 
 See [spec](test/spec.js).
 
+## Custom symbols
+
+```js
+var bc = require('base-conversion');
+
+bc.symbols('⓿①②③④⑤⑥⑦⑧⑨ⒶⒷ', 8, 12, '⑦③'); //=> '④Ⓑ'
+```
+
 ## Arbitrary precision
 
 ```js
-var fn = require('base-conversion');
+var bc = require('base-conversion');
 var Decimal = require('arbitrary-precision')(require('bigjs-adapter'));
 var toDecimalFactory = require('to-decimal-arbitrary-precision');
 
@@ -34,22 +42,14 @@ var d = toDecimalFactory(Decimal);
 // avoid large numbers to go into exponential notation (adapter dependent)
 Decimal.Impl.E_POS = 50;
 
-fn.decimal(d, 10, 9, '5678364565345634563456346757364563534534645745');
+bc.decimal(d, 10, 9, '5678364565345634563456346757364563534534645745');
 //=> '802531310452364303450750087576673257456135727727'
-```
-
-## Custom symbols
-
-```js
-var fn = require('base-conversion');
-
-fn.symbols('0123456789A#', 8, 12, '73'); //=> '4#'
 ```
 
 ## Full raw version
 
 ```js
-var fn = require('base-conversion');
+var bc = require('base-conversion');
 var Decimal = require('arbitrary-precision')(require('bigjs-adapter'));
 var toDecimalFactory = require('to-decimal-arbitrary-precision');
 
@@ -58,6 +58,6 @@ var d = toDecimalFactory(Decimal);
 // avoid large numbers to go into exponential notation (adapter dependent)
 Decimal.Impl.E_POS = 50;
 
-fn.raw(d, '01234#6789', 10, 9, '#678364#6#34#634#634#63467#7364#63#34#3464#74#');
+bc.raw(d, '01234#6789', 10, 9, '#678364#6#34#634#634#63467#7364#63#34#3464#74#');
 //=> '802#313104#23643034#07#0087#766732#74#613#727727'
 ```
