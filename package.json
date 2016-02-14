@@ -1,6 +1,6 @@
 {
   "name": "base-conversion",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Auto-curried converter between any bases with arbitrary precision support and customisable symbols",
   "main": "src/index.js",
   "scripts": {
