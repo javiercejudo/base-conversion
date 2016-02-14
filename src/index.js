@@ -3,10 +3,10 @@
 'use strict';
 
 var posNotation = require('positional-notation');
-var Decimal = require('arbitrary-precision')(require('floating-adapter'));
 var toDecimalFactory = require('to-decimal-arbitrary-precision');
 
 var R = require('./R');
+var Decimal = require('./Decimal');
 
 var defaultD = toDecimalFactory(Decimal);
 var defaultSymbols = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
