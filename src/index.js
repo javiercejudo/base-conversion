@@ -29,8 +29,8 @@ var toBase = function(d, symbols, base) {
         d(cur).div(d(base)).toString().split('.')[0]
       ];
     }),
-    R.reverse,
     R.map(R.nth(R.__, symbols)),
+    R.reverse,
     R.join('')
   );
 };
