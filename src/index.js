@@ -5,7 +5,7 @@
 var posNotation = require('positional-notation');
 var toDecimalFactory = require('to-decimal-arbitrary-precision');
 
-var R = require('./R');
+var R = require('./L');
 var Decimal = require('./Decimal');
 
 var defaultD = toDecimalFactory(Decimal);

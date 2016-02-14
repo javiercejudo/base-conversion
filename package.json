@@ -36,6 +36,7 @@
     "core-arbitrary-precision": "^2.1.0",
     "div-arbitrary-precision": "^1.1.0",
     "floating-adapter": "^1.3.0",
+    "lodash": "^4.3.0",
     "mod-arbitrary-precision": "^1.1.0",
     "plus-arbitrary-precision": "^1.1.0",
     "positional-notation": "^1.1.0",
