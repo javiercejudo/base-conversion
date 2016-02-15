@@ -16,7 +16,7 @@ var fromBase = function(d, symbols, base) {
     R.split(''),
     R.reverse,
     R.map(R.indexOf(R.__, symbols)),
-    R.addIndex(R.map)(posNotation.mapper(posNotation.raw(d, base))),
+    R.addIndex(R.map)(posNotation.mapper(d, base)),
     R.reduce(R.invoker(1, 'plus'), d(0))
   );
 };
