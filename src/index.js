@@ -23,12 +23,7 @@ var fromBase = function(d, symbols, base) {
 
 var toBase = function(d, symbols, base) {
   return R.pipe(
-    R.unfold(function(cur) {
-      return cur === '0' ? false : [
-        d(cur).mod(d(base)).toString(),
-        d(cur).div(d(base)).toString().split('.')[0]
-      ];
-    }),
+    R.unfold(posNotation.unfolder(d, base)),
     R.map(R.nth(R.__, symbols)),
     R.reverse,
     R.join('')
