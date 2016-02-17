@@ -4,7 +4,6 @@
 
 require('should');
 
-var R = require('ramda');
 var Decimal = require('arbitrary-precision')(require('bigjs-adapter'));
 var toDecimalFactory = require('to-decimal-arbitrary-precision');
 
@@ -36,6 +35,13 @@ describe('base conversion', function() {
 
     quiToB32('2312124222213').should.be.exactly('JAVIER');
     quiToB32('30333330434').should.be.exactly('TAOCP');
+  });
+
+  it('decimal to base 62', function() {
+    var decTo62 = fn(10, 62);
+
+    decTo62('60').should.be.exactly('y');
+    decTo62('63').should.be.exactly('11');
   });
 
   it('should support custom symbols', function() {

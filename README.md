@@ -24,6 +24,9 @@ See [spec](test/spec.js).
 
 ## Custom symbols
 
+For any bases above 62, custom symbols are required.
+See [tests](test/bigint-base-converter.js) for working examples.
+
 ```js
 var bc = require('base-conversion');
 
