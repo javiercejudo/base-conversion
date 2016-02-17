@@ -23,12 +23,15 @@
   "homepage": "https://github.com/javiercejudo/base-conversion#readme",
   "devDependencies": {
     "arbitrary-precision": "^1.2.2",
+    "base-converter": "^1.1.2",
+    "bigint-base-converter": "^0.1.0",
     "bigjs-adapter": "^2.4.0",
     "gulp": "^3.9.1",
     "gulp-coverage": "^0.3.38",
     "gulp-coveralls": "^0.1.4",
     "gulp-istanbul": "^0.10.3",
     "gulp-mocha": "^2.2.0",
+    "integer-base-converter": "^0.1.1",
     "rimraf": "^2.5.1",
     "should": "^8.2.2"
   },

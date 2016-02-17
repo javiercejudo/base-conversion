@@ -13,6 +13,7 @@ var defaultSymbols = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 var fromBase = function(d, symbols, base) {
   return R.pipe(
+    R.invoker(0, 'toString'),
     R.split(''),
     R.reverse,
     R.map(R.indexOf(R.__, symbols)),
