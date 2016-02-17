@@ -13,7 +13,6 @@ var defaultSymbols = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 var fromBase = function(d, symbols, base) {
   return R.pipe(
-    R.invoker(0, 'toString'),
     R.split(''),
     R.reverse,
     R.map(R.indexOf(R.__, symbols)),
@@ -32,7 +31,11 @@ var toBase = function(d, symbols, base) {
 };
 
 var convertBasesRaw = R.curryN(5, function(d, symbols, oldBase, newBase, n) {
-  return R.pipe(fromBase(d, symbols, oldBase), toBase(d, symbols, newBase))(n);
+  return R.pipe(
+    R.invoker(0, 'toString'),
+    fromBase(d, symbols, oldBase),
+    toBase(d, symbols, newBase)
+  )(n);
 });
 
 var convertBases = convertBasesRaw(defaultD, defaultSymbols);
