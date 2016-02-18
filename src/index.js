@@ -3,45 +3,53 @@
 'use strict';
 
 var posNotation = require('positional-notation');
-var toDecimalFactory = require('to-decimal-arbitrary-precision');
+var toBigFactory = require('to-decimal-arbitrary-precision');
 
 var R = require('./R');
-var Decimal = require('./Decimal');
 
-var defaultD = toDecimalFactory(Decimal);
+var defaultB = toBigFactory(require('./Big'));
 var defaultSymbols = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+var toString = R.invoker(0, 'toString');
+var curry4 = R.curryN(4);
 
-var fromBase = function(d, symbols, base) {
+var toDecimal = curry4(function(b, symbols, base, n) {
   return R.pipe(
     R.split(''),
     R.reverse,
     R.map(R.indexOf(R.__, symbols)),
-    R.addIndex(R.map)(posNotation.mapper(d, base)),
-    R.reduce(R.invoker(1, 'plus'), d(0))
-  );
-};
-
-var toBase = function(d, symbols, base) {
-  return R.pipe(
-    R.unfold(posNotation.unfolder(d, base)),
-    R.map(R.nth(R.__, symbols)),
-    R.reverse,
-    R.join('')
-  );
-};
-
-var convertBasesRaw = R.curryN(5, function(d, symbols, oldBase, newBase, n) {
-  return R.pipe(
-    R.invoker(0, 'toString'),
-    fromBase(d, symbols, oldBase),
-    toBase(d, symbols, newBase)
+    R.addIndex(R.map)(posNotation.mapper(b, base)),
+    R.reduce(R.invoker(1, 'plus'), b(0)),
+    toString
   )(n);
 });
 
-var convertBases = convertBasesRaw(defaultD, defaultSymbols);
+var fromDecimal = curry4(function(b, symbols, base, n) {
+  return R.pipe(
+    R.unfold(posNotation.unfolder(b, base)),
+    R.map(R.nth(R.__, symbols)),
+    R.reverse,
+    R.join('')
+  )(n);
+});
 
-convertBases.decimal = convertBasesRaw(R.__, defaultSymbols);
-convertBases.symbols = convertBasesRaw(defaultD);
+var convertBasesRaw = R.curryN(5, function(b, symbols, oldBase, newBase, n) {
+  return R.pipe(
+    toString,
+    toDecimal(b, symbols, oldBase),
+    fromDecimal(b, symbols, newBase)
+  )(n);
+});
+
+var convertBases = convertBasesRaw(defaultB, defaultSymbols);
+
+convertBases.big = convertBasesRaw(R.__, defaultSymbols);
+convertBases.symbols = convertBasesRaw(defaultB);
 convertBases.raw = convertBasesRaw;
+
+convertBases.toDecimal = toDecimal;
+convertBases.fromDecimal = fromDecimal;
+
+convertBases.defaultSymbols = defaultSymbols;
+convertBases.defaultB = defaultB;
 
 module.exports = convertBases;

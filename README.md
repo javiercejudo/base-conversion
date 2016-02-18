@@ -45,8 +45,12 @@ var d = toDecimalFactory(Decimal);
 // avoid large numbers to go into exponential notation (adapter dependent)
 Decimal.Impl.E_POS = 50;
 
-bc.decimal(d, 10, 9, '5678364565345634563456346757364563534534645745');
+bc.big(d, 10, 9, '5678364565345634563456346757364563534534645745');
 //=> '802531310452364303450750087576673257456135727727'
+
+// equivalent but it skips a trivial decimal to decimal conversion
+bc.fromDecimal(d, 9, '5678364565345634563456346757364563534534645745');
+=> '802531310452364303450750087576673257456135727727'
 ```
 
 ## Full raw version
@@ -63,4 +67,17 @@ Decimal.Impl.E_POS = 50;
 
 bc.raw(d, '01234#6789', 10, 9, '#678364#6#34#634#634#63467#7364#63#34#3464#74#');
 //=> '802#313104#23643034#07#0087#766732#74#613#727727'
+
+// equivalent
+bc.fromDecimal(d, '01234#6789', 9, '#678364#6#34#634#634#63467#7364#63#34#3464#74#');
+//=> '802#313104#23643034#07#0087#766732#74#613#727727'
+```
+
+## Defaults
+
+The default symbols and big implementation are exposed as follows:
+
+```js
+bc.defaultSymbols; //=> '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+bc.defaultB; //=> default arbitrary precision implementation (plus, times, div, mod & pow)
 ```
