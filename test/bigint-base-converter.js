@@ -57,7 +57,6 @@ describe('bigint-base-converter', function() {
   });
 
   it('yields the same results from 85 to 10', function() {
-    var symbols = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!#$%&()*+-;<=>?@^_`{|}~';
     var b85To10 = fn.raw(d, symbols, 85, 10);
 
     '21932261930451111902915077091070067066'
