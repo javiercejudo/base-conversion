@@ -8,7 +8,7 @@ DISC=tmp/disc.html
 DISC_MIN=tmp/disc.min.html
 NODE_BIN=node_modules/.bin
 
-browserify src/index.js --full-paths > $BUNDLE
+$NODE_BIN/browserify src/index.js --full-paths > $BUNDLE
 cat $BUNDLE | uglifyjs --mangle > $BUNDLE_MIN
 
 echo -e '\nO_o Generating discs'
