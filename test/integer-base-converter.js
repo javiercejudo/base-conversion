@@ -6,10 +6,12 @@ require('should');
 
 var other = require('integer-base-converter');
 var fn = require('../src/');
+var fromDecimal = fn.fromDecimal(fn.defaultB, fn.defaultSymbols);
+var toDecimal = fn.toDecimal(fn.defaultB, fn.defaultSymbols);
 
 describe('integer-base-converter', function() {
   it('yields the same results for base 60', function() {
-    var b10To60 = fn(10, 60);
+    var b10To60 = fromDecimal(60);
 
     'Ge'
       .should.be.exactly(other.convert(1000, 10, 60))
@@ -21,7 +23,7 @@ describe('integer-base-converter', function() {
   });
 
   it('yields the same results from base 60', function() {
-    var b60To10 = fn(60, 10);
+    var b60To10 = toDecimal(60);
 
     '1000'
       .should.be.exactly(other.convert('Ge', 60, 10).toString())
@@ -33,7 +35,7 @@ describe('integer-base-converter', function() {
   });
 
   it.skip('yields the same results for base 62', function() {
-    var b10To62 = fn(10, 62);
+    var b10To62 = fromDecimal(62);
 
     'z'
       .should.be.exactly(other.convert(61, 10, 62).toString())
