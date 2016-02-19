@@ -15,5 +15,6 @@ module.exports = Object.freeze({
   invoker: require('ramda/src/invoker'),
   reduce: require('ramda/src/reduce'),
   unfold: require('ramda/src/unfold'),
-  nth: require('ramda/src/nth')
+  nth: require('ramda/src/nth'),
+  memoize: require('ramda/src/memoize')
 });

@@ -9,7 +9,7 @@ var fn = require('../src/');
 
 describe('base-converter', function() {
   it('yields the same results for base 4', function() {
-    var b10To4 = fn(10, 4);
+    var b10To4 = fn.fromDecimal(4);
 
     '3'
       .should.be.exactly(other.decToGeneric(3, 4))
@@ -25,7 +25,7 @@ describe('base-converter', function() {
   });
 
   it('yields the same results for base 62', function() {
-    var b10To62 = fn.symbols('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 10, 62);
+    var b10To62 = fn.fromDecimalSymbols('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 62);
 
     'X'
       .should.be.exactly(other.decTo62(59))
