@@ -16,8 +16,15 @@ var other = require('bigint-base-converter');
 var fn = require('../src/');
 
 describe('bigint-base-converter', function() {
+  it('supports custom symbols', function() {
+    '10'
+      .should.be.exactly(other('a', '0123456789a', '0123456789'))
+      .and.exactly(fn.symbols('0123456789a', 11, 10, 'a'))
+      .and.exactly(fn.toDecimal.symbols('0123456789a', 11, 'a'));
+  });
+
   it('yields the same results from base 16', function() {
-    var b16To10 = fn.toDecimalBig(d, 16);
+    var b16To10 = fn.toDecimal.big(d, 16);
 
     '21932261930451111902915077091070067066'
       .should.be.exactly(other('108000000000000000080800200C417A', '0123456789ABCDEF', '0123456789'))
@@ -59,6 +66,6 @@ describe('bigint-base-converter', function() {
   it('yields the same results from 85 to 10', function() {
     '21932261930451111902915077091070067066'
       .should.be.exactly(other('4)+k&C#VzJ4br>0wv%Yp', symbols85, '0123456789'))
-      .and.exactly(fn.toDecimalRaw(d, symbols85, 85, '4)+k&C#VzJ4br>0wv%Yp'));
+      .and.exactly(fn.toDecimal.raw(d, symbols85, 85, '4)+k&C#VzJ4br>0wv%Yp'));
   });
 });

@@ -8,6 +8,13 @@ var other = require('base-converter');
 var fn = require('../src/');
 
 describe('base-converter', function() {
+  it('supports custom symbols', function() {
+    '10'
+      .should.be.exactly(other.genericToDec('a', '0123456789a').toString())
+      .and.exactly(fn.symbols('0123456789a', 11, 10, 'a'))
+      .and.exactly(fn.toDecimal.symbols('0123456789a', 11, 'a'));
+  });
+
   it('yields the same results for base 4', function() {
     var b10To4 = fn.fromDecimal(4);
 
