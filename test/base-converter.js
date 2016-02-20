@@ -25,7 +25,7 @@ describe('base-converter', function() {
   });
 
   it('yields the same results for base 62', function() {
-    var b10To62 = fn.fromDecimalSymbols('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 62);
+    var b10To62 = fn.fromDecimal.symbols('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 62);
 
     'X'
       .should.be.exactly(other.decTo62(59))

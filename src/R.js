@@ -4,17 +4,19 @@
 
 module.exports = Object.freeze({
   __: require('ramda/src/__'),
-  curryN: require('ramda/src/curryN'),
-  pipe: require('ramda/src/pipe'),
-  split: require('ramda/src/split'),
-  join: require('ramda/src/join'),
-  reverse: require('ramda/src/reverse'),
-  map: require('ramda/src/map'),
-  indexOf: require('ramda/src/indexOf'),
   addIndex: require('ramda/src/addIndex'),
+  curryN: require('ramda/src/curryN'),
+  identical: require('ramda/src/identical'),
+  identity: require('ramda/src/identity'),
+  indexOf: require('ramda/src/indexOf'),
   invoker: require('ramda/src/invoker'),
-  reduce: require('ramda/src/reduce'),
-  unfold: require('ramda/src/unfold'),
+  join: require('ramda/src/join'),
   nth: require('ramda/src/nth'),
-  memoize: require('ramda/src/memoize')
+  map: require('ramda/src/map'),
+  memoize: require('ramda/src/memoize'),
+  pipe: require('ramda/src/pipe'),
+  reduce: require('ramda/src/reduce'),
+  reverse: require('ramda/src/reverse'),
+  split: require('ramda/src/split'),
+  unfold: require('ramda/src/unfold')
 });

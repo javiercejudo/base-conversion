@@ -25,11 +25,11 @@ describe('bigint-base-converter', function() {
   });
 
   it('yields the same results for base 16', function() {
-    var b16To10 = fn.fromDecimalBig(d, 16);
+    var b10To16 = fn.fromDecimal.big(d, 16);
 
     '108000000000000000080800200C417A'
       .should.be.exactly(other('21932261930451111902915077091070067066', '0123456789', '0123456789ABCDEF'))
-      .and.exactly(b16To10('21932261930451111902915077091070067066'));
+      .and.exactly(b10To16('21932261930451111902915077091070067066'));
   });
 
   it('yields the same results from 16 to 85', function() {
@@ -41,7 +41,7 @@ describe('bigint-base-converter', function() {
   });
 
   it('yields the same results from 10 to 85', function() {
-    var b10To85 = fn.fromDecimalRaw(d, symbols85, 85);
+    var b10To85 = fn.fromDecimal.raw(d, symbols85, 85);
 
     '4)+k&C#VzJ4br>0wv%Yp'
       .should.be.exactly(other('21932261930451111902915077091070067066', '0123456789', symbols85))
