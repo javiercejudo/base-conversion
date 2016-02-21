@@ -33,6 +33,34 @@ var bc = require('base-conversion');
 bc.symbols('⓿①②③④⑤⑥⑦⑧⑨ⒶⒷ', 8, 12, '⑦③'); //=> '④Ⓑ'
 ```
 
+## Symbol translation
+
+To convert between different sets of symbols, use `bc.translate`:
+
+```js
+var bc = require('base-conversion');
+var pipe = require('ramda/src/pipe');
+
+var hexToDuoNormal = bc(16, 12);
+var hexToDuoCustom = pipe(hexToDuo, bc.translate('0123456789ᘔƐ'));
+
+hexToDuoNormal('10B'); // => '1A3'
+hexToDuoCustom('10B'); // => '1ᘔ3'
+```
+
+To use it to translate from custom symbols, use `bc.translateRaw`:
+
+```js
+var mySymbols = '⓿①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮';
+var myTranslate = bc.translateRaw(mySymbols);
+
+var hexToDuoFancy = bc.symbols(mySymbols, 16, 12);
+var hexToDuoCustom = pipe(hexToDuoFancy, myTranslate('0123456789ᘔƐ'));
+
+hexToDuoFancy('①⓿⑪'); //=> '①⑩③'
+hexToDuoCustom('①⓿⑪'); //=> '1ᘔ3'
+```
+
 ## Arbitrary precision
 
 ```js

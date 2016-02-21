@@ -58,10 +58,21 @@ describe('base conversion', function() {
       .should.be.exactly('802#313104#23643034#07#0087#766732#74#613#727727');
   });
 
-  it('supports converting from and to different sets of symbols', function() {
+  it('supports translating to different sets of symbols', function() {
     var hexToDuo = R.pipe(bc(16, 12), bc.translate('0123456789ᘔƐ'));
 
     hexToDuo('10B').should.be.exactly('1ᘔ3');
+  });
+
+  it('supports translating to different sets of symbols', function() {
+    var mySymbols = '⓿①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮';
+    var myTranslate = bc.translateRaw(mySymbols);
+
+    var hexToDuoFancy = bc.symbols(mySymbols, 16, 12);
+    var hexToDuoCustom = R.pipe(hexToDuoFancy, myTranslate('0123456789ᘔƐ'));
+
+    hexToDuoFancy('①⓿⑪').should.be.exactly('①⑩③');
+    hexToDuoCustom('①⓿⑪').should.be.exactly('1ᘔ3');
   });
 
   it.skip('non-integer decimal to base 9', function() {
