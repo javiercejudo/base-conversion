@@ -14,7 +14,6 @@ var toString = R.invoker(0, 'toString');
 
 var convertBasesRaw = R.curryN(5, function(b, symbols, oldBase, newBase, n) {
   return R.pipe(
-    toString,
     toDecimal.raw(b, symbols, oldBase),
     fromDecimal.raw(b, symbols, newBase)
   )(n);
