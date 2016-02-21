@@ -47,6 +47,7 @@
     "plus-arbitrary-precision": "^1.1.0",
     "pow-arbitrary-precision": "^2.1.0",
     "ramda": "^0.19.1",
+    "string-translate": "^1.0.0",
     "times-arbitrary-precision": "^1.1.0",
     "to-decimal-arbitrary-precision": "^1.0.2"
   }

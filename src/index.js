@@ -5,6 +5,7 @@
 var toBigFactory = require('to-decimal-arbitrary-precision');
 var toDecimal = require('base-conversion-to-dec');
 var fromDecimal = require('base-conversion-from-dec');
+var translate = require('string-translate');
 
 var R = require('./R');
 
@@ -27,6 +28,9 @@ convertBases.raw = convertBasesRaw;
 
 convertBases.toDecimal = toDecimal;
 convertBases.fromDecimal = fromDecimal;
+
+convertBases.translate = translate(defaultSymbols);
+convertBases.translateRaw = translate;
 
 convertBases.defaultSymbols = defaultSymbols;
 convertBases.defaultB = defaultB;
