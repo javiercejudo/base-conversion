@@ -9,21 +9,21 @@ var translate = require('string-translate');
 
 var R = require('./R');
 
-var defaultB = toBigFactory(require('./Big'));
+var defaultBig = toBigFactory(require('./Big'));
 var defaultSymbols = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 var toString = R.invoker(0, 'toString');
 
-var convertBasesRaw = R.curryN(5, function(b, symbols, oldBase, newBase, n) {
+var convertBasesRaw = R.curryN(5, function(big, symbols, oldBase, newBase, n) {
   return R.pipe(
-    toDecimal.raw(b, symbols, oldBase),
-    fromDecimal.raw(b, symbols, newBase)
+    toDecimal.raw(big, symbols, oldBase),
+    fromDecimal.raw(big, symbols, newBase)
   )(n);
 });
 
-var convertBases = convertBasesRaw(defaultB, defaultSymbols);
+var convertBases = convertBasesRaw(defaultBig, defaultSymbols);
 
 convertBases.big = convertBasesRaw(R.__, defaultSymbols);
-convertBases.symbols = convertBasesRaw(defaultB);
+convertBases.symbols = convertBasesRaw(defaultBig);
 convertBases.raw = convertBasesRaw;
 
 convertBases.toDecimal = toDecimal;
@@ -33,6 +33,7 @@ convertBases.translate = translate(defaultSymbols);
 convertBases.translateRaw = translate;
 
 convertBases.defaultSymbols = defaultSymbols;
-convertBases.defaultB = defaultB;
+convertBases.defaultBig = defaultBig;
+toDecimal.__ = R.__;
 
 module.exports = convertBases;
